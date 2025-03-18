@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+  
+{% block content %}
+<section style="background-color: #eee;">
+ 
+  <div class="row mb-3">
+    <div class="col-12 " >
+
+      <a href="{% url 'addreplacemanttraining' trainer.id %}" class="float-right btn btn-primary">
+        <i class="fas fa-plus"></i>
+          New Training
+      </a>
+    </div>
+  </div>
+  
+  <div class="card">
+    <!--<div class="card-header">
+      <h3 class="card-title">Naslov tablice</h3>
+    </div>-->
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table id="example2" class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Duration</th>
+          <th>Replacemant</th>
+        </tr>
+        </thead>
+        <tbody>
+          
+          {% for training in trainings  %}
+            <tr onclick="redirectToEditTraining('{{ training.id }}')">
+              <td>{{training.date|date:'Y-m-d'}}</td>
+              <td>{{training.training_duration}}h</td>
+              <td>{{training.replacement.user.first_name}} {{training.replacement.user.last_name}}</td>
+            </tr>
+          {% endfor %}
+         
+        </tbody>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+ </section>
+{% endblock content %}

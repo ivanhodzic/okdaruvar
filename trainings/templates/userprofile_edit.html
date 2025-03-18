@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+  
+{% block content %}
+<section style="background-color: #eee;">
+  
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Personal Data</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form method="POST" action="{% url 'userprofileedit' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="inputFirstName">First name</label>
+                  <input type="text" class="form-control" name="inputFirstName" id="inputFirstName" value="{{trainer.user.first_name}}">
+                </div>
+                <div class="form-group">
+                  <label for="inputLastName">Last name</label>
+                  <input type="text" class="form-control" name="inputLastName" id="inputLastName" value="{{trainer.user.last_name}}">
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail">Email address</label>
+                  <input type="email" class="form-control" name="inputEmail" id="inputEmail" value="{{trainer.user.email}}">
+                </div>
+                <div class="form-group">
+                  <label for="inputBirthday">Birthday</label>
+                  <input type="date" class="form-control" name="inputBirthday" id="inputBirthday" value="{{ trainer.birthday|date:'Y-m-d' }}">
+                </div>
+                <div class="form-group">
+                  <label for="inputMobile">Mobile</label>
+                  <input type="text" class="form-control" name="inputMobile" id="inputMobile" value="{{ trainer.mobile }}">
+                </div>
+               
+                <div class="form-group">
+                  <label for="inputImage">Image</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" name="inputImage" id="inputImage" onchange="showFileName()">
+                      <label class="custom-file-label" for="inputImage">
+                        
+                        {% if trainer.image %}
+                        {{ trainer.image.url }}
+                        {% endif %}
+                          
+                      </label>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">Upload</span>
+                    </div>
+                  </div>
+                </div>
+                <div id="fileSelected"></div>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+             
+            </form>
+          </div>
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Change password</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form id="userChangePassword" method="POST" action="{% url 'changepassword' %}#userChangePassword">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="inputOldPassword">Old password</label>
+                  <input type="password" class="form-control" name="inputOldPassword" id="inputOldPassword" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <label for="inputNewPassword">New password</label>
+                  <input type="password" class="form-control" name="inputNewPassword" id="inputNewPassword" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <label for="inputRepeatPassword">Repeat password</label>
+                  <input type="password" class="form-control" name="inputRepeatPassword" id="inputRepeatPassword" placeholder="Password">
+                </div>
+              </div>
+              <!-- /.card-body -->
+              
+              <div class="card-footer">
+                {% if messages %}
+                {% for message in messages %}
+                  <div {% if message.tags %} class="alert {{ message.tags }}" {% endif %} role="alert">
+                
+                      <span>{{ message }}</span>
+                  </div>
+                {% endfor %}
+                {% endif %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

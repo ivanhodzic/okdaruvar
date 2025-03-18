@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+  
+{% block content %}
+<section style="background-color: #eee;">
+ 
+  <div class="row mb-3">
+    <div class="col-12 " >
+      <form action="" class="float-left">
+        <div class="form-group">
+          <input type="text"  class="form-control" id="search-input" placeholder="Search for player">
+        </div>
+      </form>
+    
+      <a href="{% url 'addplayer' %}" class="float-right btn btn-primary">
+        <i class="fas fa-user-plus"></i>
+          New Player
+      </a>
+    </div>
+  </div>
+  <div id="playerList" class="row button-row">
+  {% for player in players %}
+    
+    <div class="col-md-3 col-sm-6 col-12">
+     <a href="{% url 'editplayer' player.id %}" class="card d-block text-decoration-none">
+      <div class="info-box">      
+          {% if player.image %}
+          <span class="info-box-icon">
+            <img src="{{player.image.url}}">
+          </span>
+          {% else %}
+          <span class="info-box-icon bg-info">
+            <i class="far fa-user"></i> 
+          </span>
+          {% endif %}          
+        <div class="info-box-content">
+          <span class="info-box-text">
+            {{player.user.first_name}} {{player.user.last_name}}
+          </span>   
+        </div>     
+        <!-- /.info-box-content -->
+      </div>
+ </a>
+      
+      <!-- /.info-box -->
+    </div>
+  
+  
+  {% endfor %}
+    </div>
+  </div>
+ </section>
+{% endblock content %}

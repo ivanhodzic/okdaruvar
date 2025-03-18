@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+  
+{% block content %}
+<section style="background-color: #eee;">
+  <div class="row">
+    <div class="col-lg-3 col-6">
+      <!-- small card -->
+      <a href="{% url 'addreplacemanttraining' trainer.id %}">
+      <div class="small-box bg-info" style="height: 100px;">
+        <div class="inner">
+          <h3>Training</h3>
+        </div>
+        <div class="icon">
+          <i class="nav-icon fas fa-volleyball-ball"></i>
+        </div>
+        
+      </div>
+    </a>
+    </div>
+
+    <div class="col-lg-3 col-6">
+      <!-- small card -->
+      <a href="{% url 'playerstrainer' %}">
+      <div class="small-box bg-info" style="height: 100px;">
+        <div class="inner">
+          <h3>Players</h3>
+        </div>
+        <div class="icon">
+          <i class="nav-icon fas fa-users"></i>
+        </div>
+        
+      </div>
+    </a>
+    </div>
+  </div>
+  
+</section>
+{% endblock content %}

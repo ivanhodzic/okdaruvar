@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "okdaruvar/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "okdaruvar/wsgi.py"
+      }
+    ]
+}

@@ -1,0 +1,14 @@
+pip install django-ajax
+pip install pillow
+
+DATABASES = {
+    'default': {
+      'ENGINE': 'django.db.backends.postgresql',
+        'URL': 'postgresql://postgres:ApQ2pbwjSKByTl01RlOC@containers-us-west-165.railway.app:7134/railway',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'ApQ2pbwjSKByTl01RlOC',
+        'HOST': 'containers-us-west-165.railway.app',
+        'PORT': 7134,
+    }
+}

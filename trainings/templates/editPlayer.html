@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+  
+{% block content %}
+<section style="background-color: #eee;">
+  
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Personal Data</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form method="POST" action="{% url 'saveeditplayer' player.id %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="inputFirstName">First name</label>
+                  <input type="text" value="{{player.user.first_name}}" class="form-control" name="inputFirstName" id="inputFirstName" required>
+                </div>
+                <div class="form-group">
+                  <label for="inputFathersName">Father's name</label>
+                  <input type="text" value="{{player.father_name}}" class="form-control" name="inputFathersName" id="inputFathersName" required>
+                </div>
+                <div class="form-group">
+                  <label for="inputLastName">Last name</label>
+                  <input type="text" value="{{player.user.last_name}}" class="form-control" name="inputLastName" id="inputLastName" required>
+                </div>
+                <div class="form-group">
+                  <label for="inputOIB">OIB</label>
+                  <input type="text" value="{{player.oib}}" class="form-control" name="inputOIB" id="inputOIB" required>
+                </div>
+              
+                <div class="form-group">
+                  <label for="inputBirthday">Birthday</label>
+                  <input type="date" value="{{ player.birthday|date:'Y-m-d' }}" class="form-control" name="inputBirthday" id="inputBirthday" required>
+                </div>
+                <div class="form-group">
+                  <label>Fee</label>
+                  <select name="fee" class="form-control select2" style="width: 100%;">                   
+                    
+                    {% for fee in fees %}
+                       <option value="{{fee.id}}" {% if player.membership_fee_type.id == fee.id %}selected{% endif %}>{{fee}}</option>
+                    {% endfor %}
+            
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail">Email address</label>
+                  <input type="email" value="{{player.user.email}}" class="form-control" name="inputEmail" id="inputEmail" >
+                </div>
+                <div class="form-group">
+                  <label for="inputMobile">Mobile</label>
+                  <input type="text" value="{{player.mobile}}" class="form-control" name="inputMobile" id="inputMobile">
+                </div>
+               
+                <div class="form-group">
+                  <label for="inputImage">Image</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" name="inputImage" id="inputImage" onchange="showFileName('inputImage','fileSelected')">
+                      <label class="custom-file-label" for="inputImage">
+                        
+                        {% if player.image %}
+                          {{ player.image.url }}
+                        {% endif %}
+                          
+                        </label>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">Upload</span>
+                    </div>
+                  </div>
+                </div>
+                <div id="fileSelected"></div>
+
+                <div class="form-group">
+                  <label for="inputAccessCard">Access card</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" name="inputAccessCard" id="inputAccessCard" onchange="showFileName('inputAccessCard','accessCardSelected')">
+                      <label class="custom-file-label" for="inputImage">
+                        
+                        {% if player.access_card %}
+                         {{ player.access_card.url }}
+                        {% endif %}
+                          
+                        
+                      </label>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">Upload</span>
+                    </div>
+                  </div>
+                </div>
+                <div id="accessCardSelected"></div>
+
+                <div class="form-group">
+                  <label for="inputCertificate">Cartificate of nationality</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" name="inputCertificate" id="inputCertificate" onchange="showFileName('inputCertificate','certificateSelected')">
+                      <label class="custom-file-label" for="inputImage">
+                       
+                       {% if player.cartificate_of_nationality  %}
+                       {{ player.cartificate_of_nationality.url }}
+                       {% endif %}
+                             
+                      </label>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">Upload</span>
+                    </div>
+                  </div>
+                </div>
+                <div id="certificateSelected"></div>
+
+                <div class="form-group">
+                  <label for="inputMedical">Medical examination </label>
+                  <input type="date" value="{{ player.medical_examination|date:'Y-m-d' }}" class="form-control" name="inputMedical" id="inputMedical">
+                </div>
+              </div>
+              <div class="col-12 " >
+              
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="{% url 'removeplayer' player.id %}" class="float-right btn btn-warning">
+                  <i class="fas fa-user-minus"></i>
+                    Remove
+                </a>
+              </div>
+             
+            </form>
+          </div>
+        </div>
+      </div>
+    
+  </section>
+{% endblock content %}
