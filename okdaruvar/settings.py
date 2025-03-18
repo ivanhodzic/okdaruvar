@@ -30,6 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
                 'ok-daruvar-j1ok.vercel.app','127.0.0.1',
                  'okdaruvar.herokuapp.com',
+                'okdaruvar-6766036666f7.herokuapp.com', 
                  ]
 
 
