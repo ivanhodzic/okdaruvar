@@ -98,7 +98,14 @@ WSGI_APPLICATION = 'okdaruvar.wsgi.application'
 # }
 #HEROKU BAZA
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',  # ili 'django.db.backends.postgresql_psycopg2'
+        'NAME': 'd291rpr45c85gq',
+        'USER': 'uc3l2q061vir4k',
+        'PASSWORD': 'pa81c2d0b7be0d45be540ce896229f17928620f405e6754b05f270d86a2c2987c',
+        'HOST': 'cbdhrtd93854d5.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',  # Default PostgreSQL port
+    }
 }
 
 # DATABASES = {
