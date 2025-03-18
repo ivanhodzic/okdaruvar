@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
                 'ok-daruvar-j1ok.vercel.app','127.0.0.1',
-                 'your-heroku-app.herokuapp.com',
+                 'okdaruvar.herokuapp.com',
                  ]
 
 
@@ -97,9 +97,7 @@ WSGI_APPLICATION = 'okdaruvar.wsgi.application'
 # }
 #HEROKU BAZA
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://user:password@hostname:port/dbname'
-    )
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
 # DATABASES = {
@@ -148,12 +146,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
- #   os.path.join(BASE_DIR, 'myapp/static'),
-]
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+#  #   os.path.join(BASE_DIR, 'myapp/static'),
+# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
