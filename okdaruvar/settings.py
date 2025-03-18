@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,10 @@ SECRET_KEY = 'django-insecure-y^kzs%gqbu4i2g@rqz%z*!(jt2-p6w%lkcnw58wfu!cfkrvw7c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ok-daruvar-j1ok.vercel.app','127.0.0.1']
+ALLOWED_HOSTS = [
+                'ok-daruvar-j1ok.vercel.app','127.0.0.1',
+                 'your-heroku-app.herokuapp.com',
+                 ]
 
 
 # Application definition
@@ -84,24 +88,30 @@ WSGI_APPLICATION = 'okdaruvar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
-#}
-
+# }
+#HEROKU BAZA
 DATABASES = {
-    'default': {
-      'ENGINE': 'django.db.backends.postgresql',
-        'URL': 'postgresql://postgres:ApQ2pbwjSKByTl01RlOC@containers-us-west-165.railway.app:7134/railway',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'ApQ2pbwjSKByTl01RlOC',
-        'HOST': 'containers-us-west-165.railway.app',
-        'PORT': 7134,
-    }
+    'default': dj_database_url.config(
+        default='postgres://user:password@hostname:port/dbname'
+    )
 }
+
+# DATABASES = {
+#     'default': {
+#       'ENGINE': 'django.db.backends.postgresql',
+#         'URL': 'postgresql://postgres:ApQ2pbwjSKByTl01RlOC@containers-us-west-165.railway.app:7134/railway',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'ApQ2pbwjSKByTl01RlOC',
+#         'HOST': 'containers-us-west-165.railway.app',
+#         'PORT': 7134,
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
